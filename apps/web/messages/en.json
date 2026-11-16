@@ -294,37 +294,6 @@
     "empty": "Choose a field and a service to see prices.",
     "message": "Hello UniHub 👋\nI would like to ask about: {service}\nPackage: {package} — {price}\nLink: {url}"
   },
-  "portfolio": {
-    "title": "What our work looks like",
-    "subtitle": "Illustrative examples of the deliverables you receive in each field.",
-    "badge": "Illustrative sample",
-    "items": {
-      "erd": {
-        "title": "ERD for a university library system",
-        "cat": "Databases"
-      },
-      "dashboard": {
-        "title": "Power BI sales analytics dashboard",
-        "cat": "Data Science"
-      },
-      "spss": {
-        "title": "SPSS survey analysis with interpretation",
-        "cat": "Research Support"
-      },
-      "app": {
-        "title": "Flutter clinic appointment app",
-        "cat": "Graduation Projects"
-      },
-      "ml": {
-        "title": "Machine-learning image classifier",
-        "cat": "Artificial Intelligence"
-      },
-      "report": {
-        "title": "Formatted technical report with APA references",
-        "cat": "Reports & Documentation"
-      }
-    }
-  },
   "testimonials": {
     "title": "What students say",
     "subtitle": "Real experiences from students who worked with us."

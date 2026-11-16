@@ -3,7 +3,6 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { CategoryIcon } from '@/components/category-icon';
 import { HeroSection } from '@/components/home/hero-section';
-import { PortfolioSection } from '@/components/home/portfolio-section';
 import { PriceCalculator } from '@/components/home/price-calculator';
 import { RequestWizard } from '@/components/home/request-wizard';
 import { SeasonBanner } from '@/components/home/season-banner';
@@ -182,7 +181,6 @@ export default async function HomePage() {
           <PriceCalculator categories={wizardCats} whatsapp={whatsapp} />
         </div>
       )}
-      <PortfolioSection />
       <TestimonialsSection />
 
       {/* ── How we work ── */}
