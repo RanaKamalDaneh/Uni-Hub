@@ -1,6 +1,6 @@
 /**
  * Original illustration: a student with glasses working at a laptop, inside a ringed circle with a
- * gold accent arc. Theme-aware: background shapes use CSS-variable colours so it fits light and dark.
+ * blue accent arc. Theme-aware: background shapes use CSS-variable colours so it fits light and dark.
  */
 export function HeroIllustration({ className }: { className?: string }) {
   return (
@@ -8,11 +8,11 @@ export function HeroIllustration({ className }: { className?: string }) {
       {/* rings */}
       <circle cx="280" cy="255" r="238" fill="none" className="stroke-line" strokeWidth="1.5" />
       <circle cx="280" cy="255" r="206" className="fill-slate-100 dark:fill-surface-raised" />
-      {/* animated gold arc */}
+      {/* animated blue arc */}
       <path
         d="M70 140 A238 238 0 0 1 230 22"
         fill="none"
-        stroke="#F5B82E"
+        stroke="#3B82F6"
         strokeWidth="5"
         strokeLinecap="round"
         className="animate-uh-draw [stroke-dasharray:260]"
@@ -24,7 +24,7 @@ export function HeroIllustration({ className }: { className?: string }) {
       {/* books */}
       <rect x="96" y="414" width="80" height="18" rx="4" fill="#3B5BA9" />
       <rect x="104" y="396" width="72" height="18" rx="4" fill="#64748B" />
-      <rect x="98" y="378" width="76" height="18" rx="4" fill="#F5B82E" />
+      <rect x="98" y="378" width="76" height="18" rx="4" fill="#38BDF8" />
 
       {/* mug */}
       <rect x="402" y="390" width="40" height="46" rx="9" fill="#F1F5F9" />
@@ -54,7 +54,7 @@ export function HeroIllustration({ className }: { className?: string }) {
       {/* laptop (back facing viewer) */}
       <rect x="196" y="336" width="168" height="104" rx="10" fill="#94A3B8" />
       <rect x="196" y="336" width="168" height="104" rx="10" fill="url(#hi-lid)" />
-      <circle cx="280" cy="386" r="8" fill="#F5B82E" />
+      <circle cx="280" cy="386" r="8" fill="#60A5FA" />
       <rect x="176" y="434" width="208" height="8" rx="4" fill="#CBD5E1" />
       {/* hands */}
       <ellipse cx="206" cy="434" rx="14" ry="8" fill="#C68B59" />

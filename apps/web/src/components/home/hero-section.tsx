@@ -11,7 +11,7 @@ const CHIPS = [
   { label: 'MySQL', pos: 'top-[47%] end-[1%]', delay: '2.1s' },
 ];
 
-/** Homepage hero: headline with gold highlight, search, popular chips, CTAs and the desk illustration. */
+/** Homepage hero: headline with blue highlight, search, popular chips, CTAs and the desk illustration. */
 export async function HeroSection() {
   const [t, locale] = await Promise.all([getTranslations('home'), getLocale()]);
   const Arrow = locale === 'ar' ? ArrowLeft : ArrowRight;
@@ -26,7 +26,7 @@ export async function HeroSection() {
         {/* ── Copy ── */}
         <div className="animate-uh-rise">
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-4 py-1.5 text-xs font-medium text-ink-muted backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-brand shadow-[0_0_10px_rgba(245,184,46,0.8)]" aria-hidden />
+            <span className="h-2 w-2 rounded-full bg-brand shadow-[0_0_10px_rgba(59,130,246,0.8)]" aria-hidden />
             {t('heroEyebrow')}
           </p>
           <h1 className="text-4xl font-extrabold leading-[1.2] tracking-tight text-ink sm:text-5xl lg:text-[3.6rem]">
@@ -71,7 +71,7 @@ export async function HeroSection() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/services"
-              className="inline-flex h-12 items-center gap-2 rounded-xl bg-brand px-7 text-sm font-bold text-brand-on shadow-[0_10px_30px_rgba(245,184,46,0.25)] transition hover:-translate-y-0.5 hover:bg-brand-deep"
+              className="inline-flex h-12 items-center gap-2 rounded-xl bg-brand px-7 text-sm font-bold text-brand-on shadow-[0_10px_30px_rgba(59,130,246,0.25)] transition hover:-translate-y-0.5 hover:bg-brand-deep"
             >
               {t('exploreServices')} <Arrow className="h-4 w-4" aria-hidden />
             </Link>

@@ -10,11 +10,11 @@ const config: Config = {
       // All theme colours are CSS variables (see globals.css) so light/dark switch instantly.
       colors: {
         brand: {
-          DEFAULT: "rgb(var(--brand) / <alpha-value>)", // gold accent (fills, CTAs)
+          DEFAULT: "rgb(var(--brand) / <alpha-value>)", // blue accent (fills, CTAs)
           deep: "rgb(var(--brand-deep) / <alpha-value>)",
           light: "rgb(var(--brand-soft) / <alpha-value>)", // tinted background
           fg: "rgb(var(--brand-fg) / <alpha-value>)", // accent text/icons on surfaces (contrast-safe)
-          on: "rgb(var(--brand-on) / <alpha-value>)", // text on gold fills
+          on: "rgb(var(--brand-on) / <alpha-value>)", // text on blue fills
         },
         violet: { DEFAULT: "#7C3AED", light: "rgb(var(--violet-soft) / <alpha-value>)" },
         teal: { DEFAULT: "#14B8A6", light: "rgb(var(--teal-soft) / <alpha-value>)" },

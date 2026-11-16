@@ -26,7 +26,13 @@ The owner decided the website is a **showcase only**: no online orders, payments
 - The seed now **syncs** service text on every run and **retires** platform services removed from the data files. Prices are only set on creation.
 - Web catalog fetches are no longer cached (`cache: 'no-store'`), so removals and edits show immediately.
 
-## Redesign to owner's mockup + light/dark mode (2026-11-16, latest)
+## Blue palette, no login, closest-match search (2026-11-16, latest)
+
+- **Accent is now blue** (light: blue-600, dark: blue-500 with blue-400 text), replacing gold. Only the CSS variables in `globals.css` plus a few illustration and glow colours changed.
+- **Login removed from the header** (desktop and mobile). The site is a showcase, so visitors need no account. The `/login` and `/register` routes still exist but nothing links to them.
+- **The search never shows "no results".** When nothing matches exactly, `GET /services` loosens the request step by step and returns `relaxed: true`. The steps are: individual words (with and without «ال»), then dropping price/time limits (sorted by the nearest price or delivery time), then the whole category, then the category without the text, then the whole catalog. The services page then shows a "closest services" notice.
+
+## Redesign to owner's mockup + light/dark mode (2026-11-16)
 
 - **Theme system:** every colour is a CSS variable (`globals.css`: `:root` = light, `[data-theme='dark']` = dark), mapped in `tailwind.config.ts` (`page`, `surface`, `surface-soft`, `surface-raised`, `ink`, `ink-muted`, `line`, `brand` gold + `brand-fg`/`brand-on`/`brand-light`).
   - The theme is stored in the `uh_theme` cookie and applied server-side on `<html data-theme>` (no flash). The default is **dark**.

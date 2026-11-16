@@ -192,6 +192,8 @@
     "apply": "Apply",
     "reset": "Clear filters",
     "emptyTitle": "No services match your search.",
+    "closestTitle": "No exact match for your request. Here are the closest services.",
+    "closestHint": "Not exactly what you need? Message us on WhatsApp and we'll arrange it.",
     "emptyHint": "Try fewer words or clear the filters.",
     "prev": "Previous",
     "next": "Next",

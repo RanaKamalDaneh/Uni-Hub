@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, SearchX, SlidersHorizontal } from 'lucide-react';
+import { ChevronLeft, ChevronRight, SearchX, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -123,7 +123,7 @@ export async function ServiceBrowser({
 
       <div className="mb-5 flex items-center justify-between">
         <p className="text-sm font-medium text-ink-muted" aria-live="polite">
-          {t('results', { count: data.total })}
+          {data.relaxed ? null : t('results', { count: data.total })}
         </p>
         {hasFilters && (
           <Link href={subcategory ? `${basePath}?sub=${subcategory}` : basePath} className="text-sm font-semibold text-brand-fg hover:underline">
@@ -131,6 +131,16 @@ export async function ServiceBrowser({
           </Link>
         )}
       </div>
+
+      {data.relaxed && data.items.length > 0 && (
+        <div role="status" className="mb-5 flex items-start gap-3 rounded-2xl border border-brand/40 bg-brand-light p-4">
+          <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-brand-fg" aria-hidden />
+          <div>
+            <p className="text-sm font-bold text-ink">{t('closestTitle')}</p>
+            <p className="mt-1 text-sm text-ink-muted">{t('closestHint')}</p>
+          </div>
+        </div>
+      )}
 
       {data.items.length ? (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

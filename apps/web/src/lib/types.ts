@@ -54,6 +54,8 @@ export interface ProviderRef {
 }
 
 export interface Paged<T> {
+  /** True when nothing matched exactly and the API returned the closest services instead. */
+  relaxed?: boolean;
   items: T[];
   total: number;
   page: number;

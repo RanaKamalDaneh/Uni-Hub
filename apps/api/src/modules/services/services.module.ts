@@ -22,6 +22,28 @@ export function expandSearchTerm(q: string): string[] {
     .map(([, en]) => en);
 }
 
+type Filters = Partial<Omit<ListServicesQuery, 'sort' | 'page' | 'limit'>> & { words: boolean };
+
+const STOP_WORDS = new Set([
+  'في', 'من', 'على', 'الى', 'إلى', 'عن', 'مع', 'او', 'أو', 'و', 'بدي', 'اريد', 'أريد', 'ابغى', 'مشروع', 'خدمة', 'طلب',
+  'the', 'a', 'an', 'and', 'or', 'for', 'of', 'in', 'to', 'with', 'my', 'i', 'need', 'want', 'help', 'project', 'service',
+]);
+
+/** Split free text into meaningful words (with and without the Arabic article «ال») for loose matching. */
+export function searchWords(q: string): string[] {
+  const words = q
+    .toLowerCase()
+    .split(/[\s,.;:!?؟،/\\|()_-]+/)
+    .filter((w) => w.length >= 2 && !STOP_WORDS.has(w));
+  const out = new Set<string>();
+  for (const w of words) {
+    out.add(w);
+    if (w.startsWith('ال') && w.length > 3) out.add(w.slice(2));
+    for (const syn of expandSearchTerm(w)) out.add(syn);
+  }
+  return [...out];
+}
+
 export class ListServicesQuery {
   @IsOptional() @IsString() @MaxLength(100) q?: string;
   @IsOptional() @IsString() @MaxLength(80) category?: string;
@@ -80,22 +102,77 @@ export class ServicesService {
   async list(query: ListServicesQuery) {
     const page = query.page ?? 1;
     const limit = query.limit ?? 12;
+    const q = query.q?.trim() || undefined;
+
+    const sortOrder: Prisma.ServiceOrderByWithRelationInput[] = {
+      popular: [{ isFeatured: 'desc' as const }, { viewCount: 'desc' as const }, { titleEn: 'asc' as const }],
+      newest: [{ publishedAt: 'desc' as const }],
+      price_asc: [{ startingPrice: 'asc' as const }],
+      price_desc: [{ startingPrice: 'desc' as const }],
+      rating: [{ ratingAvg: 'desc' as const }, { ratingCount: 'desc' as const }],
+      fastest: [{ deliveryDays: 'asc' as const }],
+    }[query.sort ?? 'popular']!;
+
+    const exact = { ...query, q, words: false };
+    const run = async (f: Filters, orderBy = sortOrder) => {
+      const where = this.buildWhere(f);
+      const [total, items] = await this.prisma.$transaction([
+        this.prisma.service.count({ where }),
+        this.prisma.service.findMany({ where, orderBy, skip: (page - 1) * limit, take: limit, select: CARD_SELECT }),
+      ]);
+      return { items, total, page, limit, pages: Math.max(1, Math.ceil(total / limit)) };
+    };
+
+    const result = await run(exact);
+    const constrained = !!(q || query.subcategory || query.maxPrice !== undefined || query.minPrice !== undefined || query.maxDays || query.featured);
+    if (result.total > 0 || !constrained || page > 1) return { ...result, relaxed: false };
+
+    // No exact match: never show an empty page. Loosen the request step by step, keeping as much
+    // of what the student asked for as possible, and return the closest services.
+    const noLimits = { minPrice: undefined, maxPrice: undefined, maxDays: undefined, featured: undefined };
+    const steps: { f: Filters; orderBy?: Prisma.ServiceOrderByWithRelationInput[] }[] = [
+      // 1. match any single word of the search text
+      ...(q ? [{ f: { ...exact, words: true } }] : []),
+      // 2. drop price/time limits, ordering by what is closest to them
+      {
+        f: { ...exact, ...noLimits, words: true },
+        orderBy:
+          query.maxPrice !== undefined
+            ? [{ startingPrice: 'asc' as const }]
+            : query.maxDays
+              ? [{ deliveryDays: 'asc' as const }]
+              : sortOrder,
+      },
+      // 3. widen to the whole category
+      { f: { ...exact, ...noLimits, words: true, subcategory: undefined } },
+      // 4. drop the search text inside the category
+      ...(query.category ? [{ f: { ...exact, ...noLimits, q: undefined, subcategory: undefined } }] : []),
+      // 5. the whole catalog
+      { f: { q: undefined, words: false } },
+    ];
+    for (const step of steps) {
+      const r = await run(step.f, step.orderBy);
+      if (r.total > 0) return { ...r, relaxed: true };
+    }
+    return { ...result, relaxed: false };
+  }
+
+  private buildWhere(f: Filters): Prisma.ServiceWhereInput {
     const where: Prisma.ServiceWhereInput = {
       status: 'PUBLISHED',
       provider: { verificationStatus: 'VERIFIED' },
-      category: { isActive: true, ...(query.category ? { slug: query.category } : {}) },
+      category: { isActive: true, ...(f.category ? { slug: f.category } : {}) },
     };
-    if (query.subcategory) where.subcategory = { slug: query.subcategory };
-    if (query.featured) where.isFeatured = true;
-    if (query.maxDays) where.deliveryDays = { lte: query.maxDays };
-    if (query.minPrice !== undefined || query.maxPrice !== undefined) {
-      where.startingPrice = { gte: query.minPrice, lte: query.maxPrice };
+    if (f.subcategory) where.subcategory = { slug: f.subcategory };
+    if (f.featured) where.isFeatured = true;
+    if (f.maxDays) where.deliveryDays = { lte: f.maxDays };
+    if (f.minPrice !== undefined || f.maxPrice !== undefined) {
+      where.startingPrice = { gte: f.minPrice, lte: f.maxPrice };
     }
-    const q = query.q?.trim();
-    if (q) {
+    if (f.q) {
       // Students often type technology names in Arabic letters (e.g. "بايثون"); search both forms.
-      const terms = [q, ...expandSearchTerm(q)];
-      where.OR = terms.flatMap((term) => {
+      const terms = [f.q, ...expandSearchTerm(f.q), ...(f.words ? searchWords(f.q) : [])];
+      where.OR = [...new Set(terms)].flatMap((term) => {
         const contains = { contains: term, mode: 'insensitive' as const };
         return [
           { titleEn: contains },
@@ -108,21 +185,7 @@ export class ServicesService {
         ];
       });
     }
-
-    const orderBy: Prisma.ServiceOrderByWithRelationInput[] = {
-      popular: [{ isFeatured: 'desc' as const }, { viewCount: 'desc' as const }, { titleEn: 'asc' as const }],
-      newest: [{ publishedAt: 'desc' as const }],
-      price_asc: [{ startingPrice: 'asc' as const }],
-      price_desc: [{ startingPrice: 'desc' as const }],
-      rating: [{ ratingAvg: 'desc' as const }, { ratingCount: 'desc' as const }],
-      fastest: [{ deliveryDays: 'asc' as const }],
-    }[query.sort ?? 'popular']!;
-
-    const [total, items] = await this.prisma.$transaction([
-      this.prisma.service.count({ where }),
-      this.prisma.service.findMany({ where, orderBy, skip: (page - 1) * limit, take: limit, select: CARD_SELECT }),
-    ]);
-    return { items, total, page, limit, pages: Math.max(1, Math.ceil(total / limit)) };
+    return where;
   }
 
   async getBySlug(slug: string) {
