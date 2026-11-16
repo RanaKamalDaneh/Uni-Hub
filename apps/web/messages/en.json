@@ -237,7 +237,11 @@
   },
   "contact": {
     "floating": "Chat with us on WhatsApp",
-    "general": "Hello UniHub 👋 I have a question about your services."
+    "general": "Hello UniHub 👋 I have a question about your services.",
+    "appNotOpened": "WhatsApp didn't open?",
+    "appNotOpenedHint": "If the app isn't installed on this device, open the chat in WhatsApp Web instead.",
+    "openWeb": "Open WhatsApp Web",
+    "dismiss": "Close"
   },
   "season": {
     "start": "New semester: plan your courses and projects now and start on the right foot.",
