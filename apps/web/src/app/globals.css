@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens (RGB triplets so Tailwind opacity modifiers work) ── */
+:root {
+  color-scheme: light;
+  --page: 255 255 255;
+  --surface: 255 255 255;
+  --surface-soft: 248 250 252;
+  --surface-raised: 255 255 255;
+  --ink: 15 23 42;
+  --ink-muted: 100 116 139;
+  --line: 226 232 240;
+  --brand: 245 184 46; /* gold */
+  --brand-deep: 230 163 23;
+  --brand-soft: 254 246 224;
+  --brand-fg: 180 83 9; /* readable gold-brown on white */
+  --brand-on: 10 15 28;
+  --violet-soft: 245 243 255;
+  --teal-soft: 204 251 241;
+  --grid-line: 15 23 42;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-lift: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --page: 9 13 24;
+  --surface: 17 24 39;
+  --surface-soft: 12 18 32;
+  --surface-raised: 24 33 52;
+  --ink: 241 245 249;
+  --ink-muted: 148 163 184;
+  --line: 34 45 66;
+  --brand: 245 184 46;
+  --brand-deep: 234 170 30;
+  --brand-soft: 43 36 18;
+  --brand-fg: 245 184 46;
+  --brand-on: 10 15 28;
+  --violet-soft: 36 27 64;
+  --teal-soft: 13 44 44;
+  --grid-line: 255 255 255;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  html[lang='ar'] body {
+    @apply font-arabic;
+    line-height: 1.75;
+  }
+  /* Arabic glyphs read better slightly larger with less tracking. */
+  html[lang='ar'] h1,
+  html[lang='ar'] h2,
+  html[lang='ar'] h3 {
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Mirror directional icons (arrows, chevrons) in RTL. */
+  [dir='rtl'] .rtl-flip {
+    transform: scaleX(-1);
+  }
+  .bg-hero-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgb(var(--grid-line) / 0.08) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+  /* Square grid used behind the hero (fades out towards the edges). */
+  .bg-line-grid {
+    background-image: linear-gradient(rgb(var(--grid-line) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--grid-line) / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
