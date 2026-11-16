@@ -51,7 +51,7 @@ const pkg = (i: 0 | 1 | 2, descEn: string, descAr: string, featuresEn: string[],
 export const TEMPLATES: Record<string, CategoryTemplate> = {
   // ───────────────────────── Programming ─────────────────────────
   programming: {
-    prices: [25, 55, 95], days: [3, 5, 8], revisions: [1, 2, 3],
+    prices: [35, 55, 95], days: [3, 5, 8], revisions: [1, 2, 3],
     overviewEn: 'Our {name} service is built for university students who want working, well-structured code they truly understand. Your provider works from your requirements and course guidelines, explains every key decision, and hands over a working solution you can run, extend and present with confidence.',
     overviewAr: 'صُممت خدمة {name} لطلاب الجامعات الذين يريدون شيفرة برمجية منظمة وعاملة يفهمونها فعلًا. يعمل المزود وفق متطلباتك وإرشادات مقررك، ويشرح كل قرار مهم، ويسلّمك حلًا عمليًا يمكنك تشغيله وتطويره وعرضه بثقة.',
     includedEn: ['Requirements review and clarification', 'Setup and run instructions', 'Explanation of the solution and its logic'],
@@ -101,7 +101,7 @@ export const TEMPLATES: Record<string, CategoryTemplate> = {
 
   // ───────────────────────── Data Science ─────────────────────────
   'data-science': {
-    prices: [25, 55, 95], days: [3, 5, 8], revisions: [1, 2, 3],
+    prices: [35, 55, 95], days: [3, 5, 8], revisions: [1, 2, 3],
     overviewEn: 'With {name}, your data becomes clear answers. Your provider cleans and explores the data, applies the right analytical methods, and presents findings in clear tables and visualisations — with every step documented so you can reproduce and explain the analysis.',
     overviewAr: 'مع خدمة {name} تتحول بياناتك إلى إجابات واضحة. ينظّف المزود البيانات ويستكشفها، ويطبّق أساليب التحليل المناسبة، ويعرض النتائج في جداول ورسوم بيانية واضحة، مع توثيق كل خطوة لتتمكن من إعادة التحليل وشرحه.',
     includedEn: ['Data quality check and cleaning', 'Analysis using appropriate methods', 'Charts and summary tables', 'Interpretation of results'],
