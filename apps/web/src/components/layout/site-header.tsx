@@ -1,12 +1,11 @@
 'use client';
 
-import { LayoutDashboard, LogOut, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { homeFor, useAuth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './language-switcher';
 import { Logo } from './logo';
@@ -23,41 +22,10 @@ const LINKS = [
 export function SiteHeader() {
   const t = useTranslations('nav');
   const pathname = usePathname();
-  const router = useRouter();
-  const { user, status, logout } = useAuth();
   const [open, setOpen] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
   const isActive = (href: string) => (href === '/' ? pathname === '/' : !href.includes('#') && pathname.startsWith(href));
-
-  const authArea =
-    status === 'loading' ? (
-      <div className="h-10 w-36 animate-pulse rounded-xl bg-surface-soft" aria-hidden />
-    ) : user ? (
-      <>
-        <Button asChild variant="secondary" size="sm">
-          <Link href={homeFor(user)}>
-            <LayoutDashboard aria-hidden />
-            {t('dashboard')}
-          </Link>
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={async () => {
-            await logout();
-            router.push('/');
-          }}
-        >
-          <LogOut className="rtl-flip" aria-hidden />
-          {t('logout')}
-        </Button>
-      </>
-    ) : (
-      <Link href="/login" className="px-2 text-sm font-semibold text-ink transition hover:text-brand-fg">
-        {t('login')}
-      </Link>
-    );
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-page/85 backdrop-blur-md">
@@ -81,7 +49,6 @@ export function SiteHeader() {
         <div className="hidden items-center gap-2 lg:flex">
           <ThemeToggle />
           <LanguageSwitcher />
-          {authArea}
           <Link
             href="/services"
             className="ms-1 inline-flex h-11 items-center rounded-xl bg-ink px-5 text-sm font-bold text-page transition hover:-translate-y-0.5 hover:bg-brand hover:text-brand-on"
@@ -110,8 +77,7 @@ export function SiteHeader() {
                 {t(l.key)}
               </Link>
             ))}
-            <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-4">
-              {authArea}
+            <div className="mt-3 border-t border-line pt-4">
               <Link href="/services" className="inline-flex h-10 items-center rounded-xl bg-brand px-4 text-sm font-bold text-brand-on">
                 {t('startOrder')}
               </Link>
