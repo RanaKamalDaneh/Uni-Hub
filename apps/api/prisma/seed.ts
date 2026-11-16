@@ -48,6 +48,8 @@ async function seedReference() {
       create: { key: l.key, nameEn: l.en, nameAr: l.ar, sortOrder: l.sortOrder },
     });
   }
+  // Levels removed from the data file (e.g. Master's, PhD) are deleted; profiles referencing them are set to null.
+  await prisma.academicLevel.deleteMany({ where: { key: { notIn: ACADEMIC_LEVELS.map((l) => l.key) } } });
   for (const u of UNIVERSITIES) {
     await prisma.university.upsert({
       where: { nameEn_country: { nameEn: u.en, country: 'JO' } },

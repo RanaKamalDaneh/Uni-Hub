@@ -1,6 +1,7 @@
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
 import { WhatsAppFloat } from '@/components/layout/whatsapp-float';
+import { ScrollReveal } from '@/components/scroll-reveal';
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,6 +12,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       </main>
       <SiteFooter />
       <WhatsAppFloat />
+      <ScrollReveal />
     </div>
   );
 }

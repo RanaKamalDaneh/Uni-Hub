@@ -35,6 +35,8 @@ const config: Config = {
         'uh-shine': { from: { transform: 'translateX(-120%) skewX(-20deg)' }, to: { transform: 'translateX(320%) skewX(-20deg)' } },
         'uh-draw': { from: { strokeDashoffset: '260' }, to: { strokeDashoffset: '0' } },
         'uh-grow': { from: { transform: 'scaleX(0)' }, to: { transform: 'scaleX(1)' } },
+        'uh-blink': { '0%, 92%, 100%': { transform: 'scaleY(1)' }, '95%': { transform: 'scaleY(0.1)' } },
+        'uh-pop': { '0%, 12%': { opacity: '0', transform: 'translateY(6px) scale(0.9)' }, '20%, 80%': { opacity: '1', transform: 'none' }, '90%, 100%': { opacity: '0', transform: 'translateY(-4px)' } },
       },
       animation: {
         'uh-rise': 'uh-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both',
@@ -42,6 +44,8 @@ const config: Config = {
         'uh-shine': 'uh-shine 0.9s ease-out',
         'uh-grow': 'uh-grow 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both',
         'uh-draw': 'uh-draw 1.6s ease-out 0.2s both',
+        'uh-blink': 'uh-blink 4.5s ease-in-out infinite',
+        'uh-pop': 'uh-pop 6s ease-in-out infinite',
       },
       boxShadow: {
         card: 'var(--shadow-card)',

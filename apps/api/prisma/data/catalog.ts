@@ -115,7 +115,7 @@ export const CATEGORIES: CategorySeed[] = [
   },
   {
     slug: 'research', icon: 'GraduationCap', color: 'purple',
-    en: "Research & Master's Support", ar: 'دعم البحث العلمي والماجستير',
+    en: 'Research Support', ar: 'دعم البحث العلمي',
     descEn: 'Guidance on proposals, methodology, literature reviews, statistics and academic writing review.',
     descAr: 'إرشاد في خطط البحث والمنهجية ومراجعة الأدبيات والإحصاء ومراجعة الكتابة الأكاديمية.',
     subs: [
@@ -134,7 +134,7 @@ export const CATEGORIES: CategorySeed[] = [
       s('hypothesis-testing', 'Hypothesis Testing', 'اختبار الفرضيات'),
       s('results-interpretation', 'Results Interpretation', 'تفسير النتائج'),
       s('writing-review', 'Academic Writing Review', 'مراجعة الكتابة الأكاديمية'),
-      s('thesis-formatting', 'Thesis Formatting', 'تنسيق الرسائل الجامعية'),
+      s('paper-formatting', 'Research Paper Formatting', 'تنسيق الأبحاث الجامعية'),
       s('citation-management', 'Citation Management', 'إدارة الاستشهادات'),
       s('reference-verification', 'Reference Verification', 'التحقق من المراجع'),
       s('research-presentation', 'Research Presentation Preparation', 'إعداد العرض البحثي'),
@@ -207,8 +207,6 @@ export const CATEGORIES: CategorySeed[] = [
 export const ACADEMIC_LEVELS = [
   { key: 'DIPLOMA', en: 'Diploma', ar: 'دبلوم', sortOrder: 1 },
   { key: 'BACHELOR', en: "Bachelor's", ar: 'بكالوريوس', sortOrder: 2 },
-  { key: 'MASTER', en: "Master's", ar: 'ماجستير', sortOrder: 3 },
-  { key: 'PHD', en: 'PhD', ar: 'دكتوراه', sortOrder: 4 },
 ];
 
 export const UNIVERSITIES = [

@@ -88,7 +88,7 @@ export const SERVICE_VISUALS: Record<string, ServiceVisual> = {
   'database-db-docs': I('BookText'),
   'database-db-projects': L('mysql', 'oracle'),
 
-  // Research & Master's Support
+  // Research Support
   'research-topic-exploration': I('Compass'),
   'research-proposal-review': I('FileSearch'),
   'research-research-questions': I('CircleHelp'),
@@ -104,7 +104,7 @@ export const SERVICE_VISUALS: Record<string, ServiceVisual> = {
   'research-hypothesis-testing': I('Sigma'),
   'research-results-interpretation': I('LineChart'),
   'research-writing-review': I('PenLine'),
-  'research-thesis-formatting': L('latex'),
+  'research-paper-formatting': L('latex'),
   'research-citation-management': I('Quote'),
   'research-reference-verification': I('BadgeCheck'),
   'research-research-presentation': I('Presentation'),

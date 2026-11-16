@@ -4,6 +4,7 @@ import { getLocale, getMessages, getTranslations } from 'next-intl/server';
 import { IBM_Plex_Sans_Arabic, Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { Providers } from '@/components/providers';
+import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -16,7 +17,15 @@ const arabic = IBM_Plex_Sans_Arabic({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('meta');
-  return { title: { default: t('title'), template: '%s · UniHub' }, description: t('description') };
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: t('title'), template: '%s · UniHub' },
+    description: t('description'),
+    applicationName: 'UniHub',
+    alternates: { canonical: '/' },
+    openGraph: { type: 'website', siteName: 'UniHub', title: t('title'), description: t('description'), url: '/' },
+    twitter: { card: 'summary_large_image', title: t('title'), description: t('description') },
+  };
 }
 
 export const viewport: Viewport = { themeColor: '#090D18', width: 'device-width', initialScale: 1 };
@@ -27,7 +36,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   // Theme is chosen server-side from the cookie so the first paint is already correct (no flash). Default: dark.
   const theme = (await cookies()).get('uh_theme')?.value === 'light' ? 'light' : 'dark';
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} data-theme={theme} className={`${inter.variable} ${arabic.variable}`}>
+    <html suppressHydrationWarning lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} data-theme={theme} className={`${inter.variable} ${arabic.variable}`}>
+      <head>
+        {/* Enables scroll-reveal styles only when JS runs (content stays visible without JS). */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>

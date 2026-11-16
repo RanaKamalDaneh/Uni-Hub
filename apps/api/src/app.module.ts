@@ -9,6 +9,7 @@ import { Public } from './common/decorators';
 import { AccessGuard, JwtAuthGuard } from './common/guards';
 import { AllExceptionsFilter } from './common/http-exception.filter';
 import { validateEnv } from './config/env';
+import { AdminModule } from './modules/admin/admin.module';
 import { AuditModule } from './modules/audit/audit.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { CatalogModule } from './modules/catalog/catalog.module';
@@ -46,6 +47,7 @@ class HealthController {
     AuthModule,
     CatalogModule,
     ServicesModule,
+    AdminModule,
   ],
   controllers: [HealthController],
   providers: [

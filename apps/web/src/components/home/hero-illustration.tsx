@@ -1,10 +1,46 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
+const CODE_LINES = ["print('A+')", 'git push', 'SELECT *', 'model.fit()'];
+
 /**
  * Original illustration: a student with glasses working at a laptop, inside a ringed circle with a
- * blue accent arc. Theme-aware: background shapes use CSS-variable colours so it fits light and dark.
+ * blue accent arc. The pupils follow the pointer, the eyes blink and a code bubble cycles above the head.
+ * Theme-aware, and all motion is disabled by `prefers-reduced-motion`.
  */
 export function HeroIllustration({ className }: { className?: string }) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [look, setLook] = useState({ x: 0, y: 0 });
+  const [line, setLine] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const r = svgRef.current?.getBoundingClientRect();
+        if (!r) return;
+        // Eye centre in screen space (head is at ~50% x, ~47% y of the drawing).
+        const dx = e.clientX - (r.left + r.width * 0.5);
+        const dy = e.clientY - (r.top + r.height * 0.47);
+        const d = Math.hypot(dx, dy) || 1;
+        const k = Math.min(1, d / 300);
+        setLook({ x: (dx / d) * 6 * k, y: (dy / d) * 4 * k });
+      });
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    const timer = window.setInterval(() => setLine((n) => (n + 1) % CODE_LINES.length), 6000);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      window.clearInterval(timer);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <svg viewBox="0 0 560 520" className={className} role="img" aria-hidden>
+    <svg ref={svgRef} viewBox="0 0 560 520" className={className} role="img" aria-hidden>
       {/* rings */}
       <circle cx="280" cy="255" r="238" fill="none" className="stroke-line" strokeWidth="1.5" />
       <circle cx="280" cy="255" r="206" className="fill-slate-100 dark:fill-surface-raised" />
@@ -46,10 +82,24 @@ export function HeroIllustration({ className }: { className?: string }) {
       <rect x="236" y="232" width="38" height="28" rx="10" fill="#fff" fillOpacity=".15" stroke="#1E1B2E" strokeWidth="5" />
       <rect x="286" y="232" width="38" height="28" rx="10" fill="#fff" fillOpacity=".15" stroke="#1E1B2E" strokeWidth="5" />
       <path d="M274 244 h12" stroke="#1E1B2E" strokeWidth="4" />
-      <circle cx="255" cy="246" r="4.5" fill="#1E1B2E" />
-      <circle cx="305" cy="246" r="4.5" fill="#1E1B2E" />
+      {/* pupils: follow the pointer and blink */}
+      <g style={{ transform: `translate(${look.x}px, ${look.y}px)`, transition: 'transform 120ms ease-out' }}>
+        <g className="animate-uh-blink [transform-box:fill-box] [transform-origin:center]">
+          <circle cx="255" cy="246" r="4.5" fill="#1E1B2E" />
+          <circle cx="305" cy="246" r="4.5" fill="#1E1B2E" />
+        </g>
+      </g>
       {/* smile */}
       <path d="M264 276 Q280 288 296 276" stroke="#7C2D12" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+
+      {/* code bubble */}
+      <g key={line} className="animate-uh-pop [transform-box:fill-box] [transform-origin:bottom_right]">
+        <rect x="128" y="112" width="124" height="38" rx="12" fill="#2563EB" />
+        <path d="M232 149 L246 166 L220 150 Z" fill="#2563EB" />
+        <text x="190" y="136" textAnchor="middle" fill="#fff" fontSize="14" fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontWeight="600">
+          {CODE_LINES[line]}
+        </text>
+      </g>
 
       {/* laptop (back facing viewer) */}
       <rect x="196" y="336" width="168" height="104" rx="10" fill="#94A3B8" />

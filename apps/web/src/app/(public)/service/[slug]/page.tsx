@@ -40,7 +40,9 @@ async function getService(slug: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const [s, locale] = await Promise.all([getService(slug), getLocale()]);
-  return { title: loc(s, 'title', locale), description: loc(s, 'summary', locale) };
+  const title = loc(s, 'title', locale);
+  const description = loc(s, 'summary', locale);
+  return { title, description, alternates: { canonical: `/service/${slug}` }, openGraph: { title, description, url: `/service/${slug}` } };
 }
 
 function Section({ id, title, icon, children }: { id: string; title: string; icon: React.ReactNode; children: React.ReactNode }) {

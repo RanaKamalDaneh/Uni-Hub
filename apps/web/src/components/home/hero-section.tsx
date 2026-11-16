@@ -20,7 +20,9 @@ export async function HeroSection() {
   return (
     <section className="relative overflow-hidden border-b border-line">
       <div aria-hidden className="bg-line-grid pointer-events-none absolute inset-0" />
-      <div aria-hidden className="pointer-events-none absolute -top-32 end-[-8rem] h-[26rem] w-[26rem] rounded-full bg-brand/10 blur-3xl" />
+      <div aria-hidden className="uh-blob -top-32 end-[-8rem] h-[26rem] w-[26rem] bg-blue-500" />
+      <div aria-hidden className="uh-blob bottom-[-10rem] start-[-6rem] h-[22rem] w-[22rem] bg-violet-500 [animation-delay:-7s]" />
+      <div aria-hidden className="uh-blob end-[30%] top-[40%] h-56 w-56 bg-cyan-400 [animation-delay:-12s]" />
 
       <div className="container relative grid items-center gap-12 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
         {/* ── Copy ── */}
@@ -30,7 +32,7 @@ export async function HeroSection() {
             {t('heroEyebrow')}
           </p>
           <h1 className="text-4xl font-extrabold leading-[1.2] tracking-tight text-ink sm:text-5xl lg:text-[3.6rem]">
-            {t.rich('heroTitleRich', { hl: (chunks) => <span className="text-brand">{chunks}</span> })}
+            {t.rich('heroTitleRich', { hl: (chunks) => <span className="uh-gradient-text">{chunks}</span> })}
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">{t('heroDescription')}</p>
 

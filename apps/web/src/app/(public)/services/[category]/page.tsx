@@ -20,7 +20,9 @@ async function getCategory(slug: string) {
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
   const [c, locale] = await Promise.all([getCategory(category), getLocale()]);
-  return { title: loc(c, 'name', locale), description: loc(c, 'description', locale) };
+  const title = loc(c, 'name', locale);
+  const description = loc(c, 'description', locale);
+  return { title, description, alternates: { canonical: `/services/${category}` }, openGraph: { title, description, url: `/services/${category}` } };
 }
 
 export default async function CategoryPage({

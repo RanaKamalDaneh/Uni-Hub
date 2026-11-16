@@ -31,7 +31,7 @@
   "home": {
     "heroBadge": "Built for students in Jordan and beyond",
     "heroTitle": "Everything You Need for Your University Journey.",
-    "heroDescription": "Academic and technical services delivered by specialists — from programming and data analysis to graduation projects and research & master’s support.",
+    "heroDescription": "Academic and technical services delivered by specialists — from programming and data analysis to graduation projects and research support.",
     "searchPlaceholder": "What do you need help with? e.g. Python, ERD, literature review",
     "search": "Search",
     "exploreServices": "Explore Services",
@@ -238,5 +238,118 @@
   "contact": {
     "floating": "Chat with us on WhatsApp",
     "general": "Hello UniHub 👋 I have a question about your services."
+  },
+  "season": {
+    "start": "New semester: plan your courses and projects now and start on the right foot.",
+    "mid": "Assignments & midterms season: we help with programming, reports and data analysis.",
+    "final": "Graduation projects & finals season: book early before schedules fill up.",
+    "summer": "Summer semester: a great time to learn a new skill or prepare your graduation project.",
+    "cta": "Learn more"
+  },
+  "stats": {
+    "services": "academic & tech services",
+    "categories": "specialist fields",
+    "packages": "packages per service",
+    "languages": "languages: Arabic & English"
+  },
+  "wizard": {
+    "eyebrow": "Request assistant",
+    "title": "What do you need? Let us help you choose",
+    "subtitle": "Answer three quick questions and we will suggest the best service and prepare your WhatsApp message.",
+    "step": "Step {n} of {total}",
+    "q1": "What kind of help do you need?",
+    "q2": "What is your study level?",
+    "q3": "When is your deadline?",
+    "q4": "A word about your topic (optional)",
+    "q4Placeholder": "e.g. restaurant booking system, survey analysis, neural network…",
+    "levels": "Diploma|Bachelor",
+    "deadlines": "Within 3 days|Within a week|Within two weeks|No fixed deadline",
+    "back": "Back",
+    "next": "Next",
+    "showResults": "Show suggestions",
+    "loading": "Finding the best match…",
+    "resultsTitle": "The best services for your request",
+    "restart": "Start over",
+    "sendWhatsapp": "Send your request on WhatsApp",
+    "browseCategory": "Browse all services in this field",
+    "from": "From",
+    "message": "Hello UniHub 👋\nI need help with: {category}\nStudy level: {level}\nDeadline: {deadline}{topic}",
+    "topicLine": "\nTopic: {topic}"
+  },
+  "calc": {
+    "eyebrow": "Price calculator",
+    "title": "Estimate the price of your request",
+    "subtitle": "Pick a field, a service and a package to see the price and delivery time instantly.",
+    "category": "Field",
+    "service": "Service",
+    "choose": "Choose…",
+    "package": "Package",
+    "price": "Estimated price",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "delivery": "Delivery",
+    "revisions": "{count, plural, =0 {No revisions} one {# revision} other {# revisions}}",
+    "note": "This is an estimate; the final price is agreed based on your request details.",
+    "agree": "Agree with us on WhatsApp",
+    "details": "Service details",
+    "empty": "Choose a field and a service to see prices.",
+    "message": "Hello UniHub 👋\nI would like to ask about: {service}\nPackage: {package} — {price}\nLink: {url}"
+  },
+  "portfolio": {
+    "title": "What our work looks like",
+    "subtitle": "Illustrative examples of the deliverables you receive in each field.",
+    "badge": "Illustrative sample",
+    "items": {
+      "erd": {
+        "title": "ERD for a university library system",
+        "cat": "Databases"
+      },
+      "dashboard": {
+        "title": "Power BI sales analytics dashboard",
+        "cat": "Data Science"
+      },
+      "spss": {
+        "title": "SPSS survey analysis with interpretation",
+        "cat": "Research Support"
+      },
+      "app": {
+        "title": "Flutter clinic appointment app",
+        "cat": "Graduation Projects"
+      },
+      "ml": {
+        "title": "Machine-learning image classifier",
+        "cat": "Artificial Intelligence"
+      },
+      "report": {
+        "title": "Formatted technical report with APA references",
+        "cat": "Reports & Documentation"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What students say",
+    "subtitle": "Real experiences from students who worked with us."
+  },
+  "admin": {
+    "title": "Admin panel",
+    "subtitle": "Edit the WhatsApp number and service prices; changes appear on the site immediately.",
+    "loginRequired": "Log in with an admin account to continue.",
+    "login": "Log in",
+    "forbidden": "This account does not have admin access.",
+    "logout": "Log out",
+    "viewSite": "View site",
+    "contactTitle": "WhatsApp number",
+    "contactHint": "International format without + or leading zeros, e.g. 962791234567. Leave empty to hide WhatsApp buttons.",
+    "save": "Save",
+    "saved": "Saved ✓",
+    "saveFailed": "Could not save. Check the value.",
+    "pricesTitle": "Service prices",
+    "allCategories": "All fields",
+    "searchPlaceholder": "Search by service name…",
+    "service": "Service",
+    "price": "Price (JOD)",
+    "days": "Days",
+    "active": "Active",
+    "noResults": "No services.",
+    "count": "{count} services"
   }
 }

@@ -26,7 +26,37 @@ The owner decided the website is a **showcase only**: no online orders, payments
 - The seed now **syncs** service text on every run and **retires** platform services removed from the data files. Prices are only set on creation.
 - Web catalog fetches are no longer cached (`cache: 'no-store'`), so removals and edits show immediately.
 
-## Blue palette, no login, closest-match search (2026-11-16, latest)
+## Engagement features, motion, admin panel, no Master's content (2026-11-16, latest)
+
+- **Homepage additions:**
+  - A season banner that follows the Jordanian academic calendar (`season-banner.tsx`).
+  - Animated count-up stats built from live data.
+  - A 4-step **request wizard** that suggests the closest services and pre-fills a WhatsApp message (`request-wizard.tsx`).
+  - A **price calculator** (field → service → package, with live package data).
+  - **Illustrative work samples** (SVG mock-ups, clearly labelled).
+  - **Testimonials**, driven by `src/content/testimonials.ts`. The section stays hidden until real entries are added.
+- **Motion and colour:**
+  - Scroll-reveal for `[data-reveal]` elements (`scroll-reveal.tsx` plus CSS in `globals.css`). It uses `translate`/`scale`, so hover transforms still work.
+  - An infinite tech-logo marquee, floating colour blobs, animated gradient text and backgrounds, and a per-category accent colour with a rotating conic border and a mouse spotlight.
+  - The hero character's pupils follow the pointer, and it blinks under a rotating code bubble.
+  - All of this is disabled by `prefers-reduced-motion`.
+- **Admin panel** `/admin/dashboard` (role-checked in the UI and enforced by the API):
+  - Set the WhatsApp number (`PATCH /admin/settings/contact`, `settings.manage`).
+  - Edit package price, delivery days and active flag (`GET /admin/services`, `PATCH /admin/packages/:id`, `services.moderate`). The service's starting price and delivery time are re-synced.
+  - Every change is audit-logged.
+  - The panel is reached via `/login`, which is not linked from the public site.
+  - Production still needs a real admin account, because demo accounts are dev-only.
+- **SEO:**
+  - `sitemap.xml` (all categories and services) and `robots.txt`.
+  - A generated Open Graph share image.
+  - `metadataBase` from `NEXT_PUBLIC_SITE_URL`.
+  - Canonical URLs and Open Graph on category and service pages.
+- **Master's content removed at the owner's request:**
+  - The category is renamed to "Research Support / دعم البحث العلمي", and the academic levels are now only Diploma and Bachelor's (the seed deletes the others).
+  - "Thesis Formatting" is replaced by "Research Paper Formatting".
+  - Thesis and postgraduate wording is removed.
+
+## Blue palette, no login, closest-match search (2026-11-16)
 
 - **Accent is now blue** (light: blue-600, dark: blue-500 with blue-400 text), replacing gold. Only the CSS variables in `globals.css` plus a few illustration and glow colours changed.
 - **Login removed from the header** (desktop and mobile). The site is a showcase, so visitors need no account. The `/login` and `/register` routes still exist but nothing links to them.
