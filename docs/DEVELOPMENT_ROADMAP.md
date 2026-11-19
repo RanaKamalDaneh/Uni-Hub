@@ -1,4 +1,4 @@
-# UniHub — Development Roadmap
+# Naajah — Development Roadmap
 
 Each phase leaves the application runnable. A phase is complete only when its checklist items are implemented **and** verified (tests or a recorded manual check). The live status is in [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md).
 

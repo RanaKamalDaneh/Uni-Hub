@@ -1,4 +1,4 @@
-// UniHub — PostgreSQL schema (Prisma)
+// Naajah — PostgreSQL schema (Prisma)
 // Conventions: cuid ids, createdAt/updatedAt on mutable entities, money stored as Decimal(12,2),
 // bilingual text stored as paired columns (xxxEn / xxxAr) for catalog content.
 

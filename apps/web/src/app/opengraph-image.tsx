@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'UniHub: academic & technical services for university students';
+export const alt = 'Naajah: academic & technical services for university students';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
             U
           </div>
           <div style={{ fontSize: 48, fontWeight: 800, display: 'flex' }}>
-            Uni<span style={{ color: '#60A5FA' }}>Hub</span>
+            Naa<span style={{ color: '#60A5FA' }}>jah</span>
           </div>
         </div>
         <div style={{ marginTop: 48, fontSize: 64, fontWeight: 800, lineHeight: 1.15, maxWidth: 900, display: 'flex', flexWrap: 'wrap' }}>

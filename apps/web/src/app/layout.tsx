@@ -19,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('meta');
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: t('title'), template: '%s · UniHub' },
+    title: { default: t('title'), template: '%s · Naajah' },
     description: t('description'),
-    applicationName: 'UniHub',
+    applicationName: 'Naajah',
     alternates: { canonical: '/' },
-    openGraph: { type: 'website', siteName: 'UniHub', title: t('title'), description: t('description'), url: '/' },
+    openGraph: { type: 'website', siteName: 'Naajah', title: t('title'), description: t('description'), url: '/' },
     twitter: { card: 'summary_large_image', title: t('title'), description: t('description') },
   };
 }

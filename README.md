@@ -1,6 +1,6 @@
-# UniHub
+# Naajah (نجاح)
 
-**Your University Journey, Made Easier.** UniHub is a bilingual (Arabic/English) platform that connects university students with verified service providers. It also offers academic tools and an openly licensed resource library.
+**Your University Journey, Made Easier.** Naajah is a bilingual (Arabic/English) platform that connects university students with verified service providers. It also offers academic tools and an openly licensed resource library.
 
 > Current status: **Phase 2 (foundation) complete.** See [docs/DEVELOPMENT_STATUS.md](docs/DEVELOPMENT_STATUS.md).
 

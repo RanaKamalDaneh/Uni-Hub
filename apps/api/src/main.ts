@@ -36,8 +36,8 @@ async function bootstrap() {
 
   if (config.get('NODE_ENV') !== 'production') {
     const doc = new DocumentBuilder()
-      .setTitle('UniHub API')
-      .setDescription('REST API for the UniHub platform')
+      .setTitle('Naajah API')
+      .setDescription('REST API for the Naajah platform')
       .setVersion('1.0')
       .addBearerAuth()
       .build();
@@ -47,7 +47,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
   const port = config.get<number>('PORT') ?? 4000;
   await app.listen(port);
-  Logger.log(`UniHub API listening on http://localhost:${port}/api/v1 (docs: /api/docs)`, 'Bootstrap');
+  Logger.log(`Naajah API listening on http://localhost:${port}/api/v1 (docs: /api/docs)`, 'Bootstrap');
 }
 
 if (require.main === module) {

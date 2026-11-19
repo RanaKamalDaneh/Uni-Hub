@@ -1,4 +1,4 @@
-# UniHub — Deployment
+# Naajah — Deployment
 
 > Draft. This document is completed in Phase 12. The production setup does **not** use Docker or `embedded-postgres`.
 

@@ -1,4 +1,4 @@
-# UniHub — Development Status
+# Naajah — Development Status
 
 _Last updated: 2026-11-16_
 
@@ -92,7 +92,7 @@ The owner decided the website is a **showcase only**: no online orders, payments
 
 ## Phase 4 progress (2026-11-16)
 
-- **147 services** (every subcategory in the spec) published under the official **UniHub Academic Team** provider account (`academic-team@unihub.platform`, which cannot log in).
+- **147 services** (every subcategory in the spec) published under the official **Naajah Academic Team** provider account (`academic-team@unihub.platform`, which cannot log in).
   - Bilingual content is built from per-category templates (`prisma/data/service-templates.ts`) plus per-service summaries and technologies (`prisma/data/service-details.ts`).
   - Each service has 3 packages with **suggested** JOD prices, an FAQ and an academic-integrity FAQ where relevant.
   - The catalog is created once and never overwritten, so admin edits survive re-seeding. It is real platform content and also runs in production; only demo accounts are dev-only.

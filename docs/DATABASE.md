@@ -1,4 +1,4 @@
-# UniHub — Database
+# Naajah — Database
 
 - **Engine:** PostgreSQL (17 locally via `embedded-postgres`; any PostgreSQL 14+ in production)
 - **ORM:** Prisma 6

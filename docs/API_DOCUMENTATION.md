@@ -1,4 +1,4 @@
-# UniHub — API Documentation
+# Naajah — API Documentation
 
 - **Base URL:** `/api/v1` (proxied by the web app; directly on `http://localhost:4000/api/v1` in dev)
 - **Interactive docs:** Swagger UI at `http://localhost:4000/api/docs` (disabled in production)

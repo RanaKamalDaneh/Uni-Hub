@@ -158,7 +158,7 @@ async function seedDemoAccounts() {
 }
 
 /**
- * Core service catalog owned by the official "UniHub Academic Team" provider account.
+ * Core service catalog owned by the official "Naajah Academic Team" provider account.
  * This is real platform content (not demo data). Text content is re-synced from the data files on
  * every run; prices and packages are set only on creation so later admin price edits are preserved.
  * Services removed from the data files are retired (deleted) together with their empty subcategory.
@@ -171,7 +171,7 @@ async function seedPlatformCatalog() {
     update: {},
     create: {
       email: 'academic-team@unihub.platform',
-      fullName: 'UniHub Academic Team',
+      fullName: 'Naajah Academic Team',
       passwordHash: await bcrypt.hash(randomBytes(32).toString('hex'), 12),
       emailVerified: true,
       roles: { create: { roleId: providerRole.id } },
@@ -179,9 +179,9 @@ async function seedPlatformCatalog() {
     },
   });
   const teamText = {
-    displayNameAr: 'فريق يوني هب الأكاديمي',
-    titleAr: 'فريق يوني هب الرسمي من المطورين وعلماء البيانات والباحثين والمدرسين',
-    bioAr: 'فريق يوني هب الأكاديمي مجموعة مختارة من مهندسي البرمجيات وعلماء البيانات والباحثين ومدرسي الجامعات. نقدّم خدمات يوني هب الأساسية مع التركيز على الجودة والشرح الواضح والنزاهة الأكاديمية.',
+    displayNameAr: 'فريق نجاح الأكاديمي',
+    titleAr: 'فريق نجاح الرسمي من المطورين وعلماء البيانات والباحثين والمدرسين',
+    bioAr: 'فريق نجاح الأكاديمي مجموعة مختارة من مهندسي البرمجيات وعلماء البيانات والباحثين ومدرسي الجامعات. نقدّم خدمات نجاح الأساسية مع التركيز على الجودة والشرح الواضح والنزاهة الأكاديمية.',
   };
   const provider = await prisma.providerProfile.upsert({
     where: { userId: team.id },
@@ -190,8 +190,8 @@ async function seedPlatformCatalog() {
       userId: team.id,
       slug: 'unihub-academic-team',
       ...teamText,
-      title: 'Official UniHub team of developers, data scientists, researchers and tutors',
-      bio: 'The UniHub Academic Team is a vetted group of software engineers, data scientists, researchers and university tutors. We deliver core UniHub services with a focus on quality, clear explanations and academic integrity.',
+      title: 'Official Naajah team of developers, data scientists, researchers and tutors',
+      bio: 'The Naajah Academic Team is a vetted group of software engineers, data scientists, researchers and university tutors. We deliver core Naajah services with a focus on quality, clear explanations and academic integrity.',
       yearsExperience: 10,
       languages: ['Arabic', 'English'],
       verificationStatus: 'VERIFIED',
@@ -295,7 +295,7 @@ async function seedPlatformCatalog() {
   const total = await prisma.service.count({ where: { providerId: provider.id } });
   console.log(
     `✔ Platform catalog: ${created} created, ${synced} synced, ${retired.length} retired` +
-      `${retired.length ? ` (${retired.map((r) => r.slug).join(', ')})` : ''} — ${total} total, owned by UniHub Academic Team)`,
+      `${retired.length ? ` (${retired.map((r) => r.slug).join(', ')})` : ''} — ${total} total, owned by Naajah Academic Team)`,
   );
 }
 

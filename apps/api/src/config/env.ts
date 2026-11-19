@@ -24,7 +24,7 @@ const schema = z.object({
 
   MAIL_DRIVER: z.enum(['outbox', 'smtp']).default('outbox'),
   MAIL_OUTBOX_DIR: z.string().default('../../.data/outbox'),
-  MAIL_FROM: z.string().default('UniHub <no-reply@unihub.local>'),
+  MAIL_FROM: z.string().default('Naajah <no-reply@unihub.local>'),
   SMTP_HOST: z.string().optional(),
   SMTP_PORT: z.coerce.number().optional(),
   SMTP_USER: z.string().optional(),

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "UniHub — Your University Journey, Made Easier",
+    "title": "Naajah — Your University Journey, Made Easier",
     "description": "Discover academic services, technical projects, research support, and educational resources — all in one place."
   },
   "brand": {
@@ -62,7 +62,7 @@
     "providersTitle": "Featured Providers",
     "providersSubtitle": "Verified experts ready to help.",
     "providersEmpty": "Verified providers will be featured here.",
-    "whyTitle": "Why Choose UniHub",
+    "whyTitle": "Why Choose Naajah",
     "why1Title": "Verified providers",
     "why1Text": "Every provider is reviewed by our team before they can offer services.",
     "why2Title": "Direct WhatsApp contact",
@@ -99,31 +99,31 @@
     "how3Text": "We keep you updated step by step until delivery."
   },
   "faq": {
-    "q1": "What is UniHub?",
-    "a1": "UniHub connects university students with experienced specialists in programming, AI, data science, databases, research support, graduation projects, reports and tutoring.",
+    "q1": "What is Naajah?",
+    "a1": "Naajah connects university students with experienced specialists in programming, AI, data science, databases, research support, graduation projects, reports and tutoring.",
     "q2": "How do I order a service?",
     "a2": "Open the service, choose a package and tap “Contact us on WhatsApp”. We will reply to agree on the details, price and delivery date. No payment is made through the website.",
-    "q3": "Does UniHub support academic integrity?",
+    "q3": "Does Naajah support academic integrity?",
     "a3": "Yes. Services focus on learning, guidance, review and support for your own work. We do not offer exam-taking or impersonation services and remove listings that do.",
     "q5": "How do I become a provider?",
     "a5": "Register as a provider, complete your profile and submit it for verification. Our team reviews every application."
   },
   "footer": {
-    "about": "UniHub connects university students with verified experts, tools and resources.",
+    "about": "Naajah connects university students with verified experts, tools and resources.",
     "platform": "Platform",
     "company": "Company",
     "support": "Support",
     "pricing": "Pricing",
     "faq": "FAQ",
     "contact": "Contact",
-    "rights": "© {year} UniHub. All rights reserved.",
-    "integrity": "UniHub supports learning and student-owned work."
+    "rights": "© {year} Naajah. All rights reserved.",
+    "integrity": "Naajah supports learning and student-owned work."
   },
   "auth": {
     "loginTitle": "Welcome back",
     "loginSubtitle": "Log in to continue to your workspace.",
     "registerTitle": "Create your account",
-    "registerSubtitle": "Join UniHub in less than a minute.",
+    "registerSubtitle": "Join Naajah in less than a minute.",
     "email": "Email",
     "password": "Password",
     "fullName": "Full name",
@@ -233,11 +233,11 @@
     "contactWhatsapp": "Contact us on WhatsApp",
     "whatsappNote": "We reply on WhatsApp to agree on the details, price and delivery date. No payment is taken on the website.",
     "whatsappMissing": "Our WhatsApp number will be available here shortly.",
-    "whatsappMessage": "Hello UniHub 👋\nI would like to request this service: {service}\nPackage: {package} ({price})\nLink: {url}"
+    "whatsappMessage": "Hello Naajah team 👋\nI would like to request this service: {service}\nPackage: {package} ({price})\nLink: {url}"
   },
   "contact": {
     "floating": "Chat with us on WhatsApp",
-    "general": "Hello UniHub 👋 I have a question about your services.",
+    "general": "Hello Naajah team 👋 I have a question about your services.",
     "appNotOpened": "WhatsApp didn't open?",
     "appNotOpenedHint": "If the app isn't installed on this device, open the chat in WhatsApp Web instead.",
     "openWeb": "Open WhatsApp Web",
@@ -277,7 +277,7 @@
     "sendWhatsapp": "Send your request on WhatsApp",
     "browseCategory": "Browse all services in this field",
     "from": "From",
-    "message": "Hello UniHub 👋\nI need help with: {category}\nStudy level: {level}\nDeadline: {deadline}{topic}",
+    "message": "Hello Naajah team 👋\nI need help with: {category}\nStudy level: {level}\nDeadline: {deadline}{topic}",
     "topicLine": "\nTopic: {topic}"
   },
   "calc": {
@@ -296,7 +296,7 @@
     "agree": "Agree with us on WhatsApp",
     "details": "Service details",
     "empty": "Choose a field and a service to see prices.",
-    "message": "Hello UniHub 👋\nI would like to ask about: {service}\nPackage: {package} — {price}\nLink: {url}"
+    "message": "Hello Naajah team 👋\nI would like to ask about: {service}\nPackage: {package} — {price}\nLink: {url}"
   },
   "testimonials": {
     "title": "What students say",

@@ -1,4 +1,4 @@
-// Category tree from the UniHub master specification (bilingual).
+// Category tree from the Naajah master specification (bilingual).
 // Each subcategory corresponds to a service type listed in the spec.
 
 export interface SubSeed { slug: string; en: string; ar: string }

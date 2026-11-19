@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-/** UniHub design tokens (see docs/ARCHITECTURE.md and the brand palette in the PRD). */
+/** Naajah design tokens (see docs/ARCHITECTURE.md and the brand palette in the PRD). */
 const config: Config = {
   darkMode: ["selector", '[data-theme="dark"]'],
   content: ['./src/**/*.{ts,tsx}'],

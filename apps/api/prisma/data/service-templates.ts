@@ -24,8 +24,8 @@ export interface CategoryTemplate {
 const INTEGRITY_FAQ: Faq = {
   qEn: 'Does this service respect academic integrity?',
   qAr: 'هل تحترم هذه الخدمة النزاهة الأكاديمية؟',
-  aEn: 'Yes. UniHub services support your learning and your own work through guidance, review, explanation and development assistance. Always follow your university’s policy on external help and acknowledge support where required.',
-  aAr: 'نعم. تدعم خدمات يوني هب تعلّمك وعملك الخاص من خلال الإرشاد والمراجعة والشرح والمساعدة في التطوير. التزم دائمًا بسياسة جامعتك بشأن المساعدة الخارجية، واذكر الدعم الذي تلقيته عند الحاجة.',
+  aEn: 'Yes. Naajah services support your learning and your own work through guidance, review, explanation and development assistance. Always follow your university’s policy on external help and acknowledge support where required.',
+  aAr: 'نعم. تدعم خدمات نجاح تعلّمك وعملك الخاص من خلال الإرشاد والمراجعة والشرح والمساعدة في التطوير. التزم دائمًا بسياسة جامعتك بشأن المساعدة الخارجية، واذكر الدعم الذي تلقيته عند الحاجة.',
 };
 
 const REVISION_FAQ: Faq = {
@@ -239,7 +239,7 @@ export const TEMPLATES: Record<string, CategoryTemplate> = {
     deliverablesAr: ['جلسة مباشرة (رابط اجتماع)', 'ملاحظات الجلسة', 'تمارين تدريبية'],
     faq: [
       { qEn: 'How are sessions held?', qAr: 'كيف تُعقد الجلسات؟', aEn: 'Online through a meeting link we send you on WhatsApp. You agree the time with your tutor when you contact us.', aAr: 'عبر الإنترنت من خلال رابط اجتماع نرسله لك عبر واتساب، وتتفق على الموعد مع المدرس عند تواصلك معنا.' },
-      { qEn: 'Can tutors help during an exam?', qAr: 'هل يمكن للمدرس المساعدة أثناء الامتحان؟', aEn: 'No. Tutoring is for learning and preparation only. Exam-taking or live help during assessments is not allowed on UniHub.', aAr: 'لا. الدروس للتعلم والتحضير فقط، ولا يُسمح على يوني هب بتقديم الامتحانات أو المساعدة المباشرة أثناء التقييم.' },
+      { qEn: 'Can tutors help during an exam?', qAr: 'هل يمكن للمدرس المساعدة أثناء الامتحان؟', aEn: 'No. Tutoring is for learning and preparation only. Exam-taking or live help during assessments is not allowed on Naajah.', aAr: 'لا. الدروس للتعلم والتحضير فقط، ولا يُسمح على منصة نجاح بتقديم الامتحانات أو المساعدة المباشرة أثناء التقييم.' },
       { qEn: 'Can I reschedule?', qAr: 'هل يمكنني تغيير موعد الجلسة؟', aEn: 'Yes, by agreement with your tutor at least 12 hours before the session.', aAr: 'نعم، بالاتفاق مع المدرس قبل 12 ساعة على الأقل من موعد الجلسة.' },
       ORDER_FAQ,
     ],

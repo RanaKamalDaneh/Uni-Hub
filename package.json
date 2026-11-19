@@ -2,7 +2,7 @@
   "name": "unihub",
   "private": true,
   "version": "0.1.0",
-  "description": "UniHub — university services, projects and academic tools platform",
+  "description": "Naajah — university services, projects and academic tools platform",
   "workspaces": [
     "packages/*",
     "apps/*"

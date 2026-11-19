@@ -1,4 +1,4 @@
-# UniHub — Environment Variables
+# Naajah — Environment Variables
 
 The API validates its configuration at boot (`apps/api/src/config/env.ts`) and refuses to start if it's invalid. The template is in `apps/api/.env.example`.
 
@@ -19,7 +19,7 @@ The API validates its configuration at boot (`apps/api/src/config/env.ts`) and r
 | `S3_ENDPOINT`, `S3_REGION`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` | when `s3` | | S3-compatible storage |
 | `MAIL_DRIVER` | | `outbox` | `outbox` (writes `.eml` files) \| `smtp` |
 | `MAIL_OUTBOX_DIR` | | `../../.data/outbox` | |
-| `MAIL_FROM` | | `UniHub <no-reply@unihub.local>` | |
+| `MAIL_FROM` | | `Naajah <no-reply@unihub.local>` | |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | when `smtp` | | |
 | `PAYMENT_GATEWAY` | | `sandbox` | `sandbox` \| `stripe` |
 | `PAYMENT_WEBHOOK_SECRET` | ✅ | | HMAC secret for sandbox webhooks (≥ 16 chars) |

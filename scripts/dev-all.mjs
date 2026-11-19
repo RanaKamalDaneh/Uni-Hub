@@ -1,4 +1,4 @@
-// Starts the whole UniHub stack with one command: database -> API -> web, then opens the browser.
+// Starts the whole Naajah stack with one command: database -> API -> web, then opens the browser.
 // Usage: npm run dev        (Ctrl+C stops everything)
 import { spawn } from 'node:child_process';
 
@@ -27,7 +27,7 @@ function run(name, args, readyPattern) {
 }
 
 function shutdown() {
-  console.log('\nStopping UniHub...');
+  console.log('\nStopping Naajah...');
   for (const c of children) {
     if (process.platform === 'win32') spawn('taskkill', ['/pid', String(c.pid), '/T', '/F']);
     else c.kill('SIGINT');
@@ -43,11 +43,11 @@ try {
   await run('web', ['run', 'dev:web'], /Ready in|Local:/);
 
   const url = 'http://localhost:3000';
-  console.log(`\n\x1b[1m✔ UniHub is running: ${url}\x1b[0m  (Ctrl+C to stop)\n`);
+  console.log(`\n\x1b[1m✔ Naajah is running: ${url}\x1b[0m  (Ctrl+C to stop)\n`);
   const opener = process.platform === 'win32' ? `start "" ${url}` : process.platform === 'darwin' ? `open ${url}` : `xdg-open ${url}`;
   spawn(opener, { shell: true, stdio: 'ignore' });
 } catch (e) {
   console.error(`\x1b[31m${e.message}\x1b[0m`);
-  console.error('Tip: if a port is busy, UniHub may already be running in another terminal.');
+  console.error('Tip: if a port is busy, Naajah may already be running in another terminal.');
   shutdown();
 }

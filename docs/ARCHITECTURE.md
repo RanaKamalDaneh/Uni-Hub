@@ -1,8 +1,8 @@
-# UniHub — Architecture
+# Naajah — Architecture
 
 ## 1. Overview
 
-UniHub is a bilingual (Arabic/English) marketplace and workspace connecting university students with
+Naajah is a bilingual (Arabic/English) marketplace and workspace connecting university students with
 verified service providers, plus self-service academic tools and an openly-licensed resource library.
 
 ```
@@ -75,7 +75,7 @@ through `DATABASE_URL`. Redis is optional and only needed for multi-instance dep
 | Decision | Choice | Reason |
 |---|---|---|
 | Repo | npm workspaces monorepo | One install, shared types between web and api, no extra tooling (pnpm not installed). |
-| Frontend | Next.js 15 App Router + Tailwind + shadcn-style primitives (Radix + cva) | As specified; primitives are written in-repo so they follow the UniHub palette. |
+| Frontend | Next.js 15 App Router + Tailwind + shadcn-style primitives (Radix + cva) | As specified; primitives are written in-repo so they follow the Naajah palette. |
 | i18n | `next-intl` without locale prefixes, locale in a `NEXT_LOCALE` cookie | Keeps the exact route map from the spec; the choice persists across sessions; `dir="rtl"` is applied at `<html>`. |
 | Backend | NestJS 11, REST, Swagger at `/api/docs` | As specified. |
 | ORM | Prisma 6 + PostgreSQL 16 | As specified; migrations are committed. |
@@ -91,7 +91,7 @@ through `DATABASE_URL`. Redis is optional and only needed for multi-instance dep
 
 ## 4. Order & request lifecycle
 
-The spec lists one status list with "Under Review" twice. UniHub splits it into two lifecycles:
+The spec lists one status list with "Under Review" twice. Naajah splits it into two lifecycles:
 
 **ProjectRequest**: `DRAFT → SUBMITTED → UNDER_REVIEW (moderation) → AWAITING_PROPOSALS → PROPOSAL_RECEIVED → AWARDED`, with `CANCELLED`/`EXPIRED` as exits.
 

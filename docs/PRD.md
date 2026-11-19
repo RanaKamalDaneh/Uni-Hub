@@ -1,4 +1,4 @@
-# UniHub — Product Requirements
+# Naajah — Product Requirements
 
 **Tagline:** "Your University Journey, Made Easier." *Projects, Research, Technology & Academic Services — All in One Place.*
 
@@ -32,7 +32,7 @@ credible place to show verified expertise to students.
 
 ## 4. Academic integrity policy (product rule)
 
-UniHub supports **learning, guidance, review and student-owned work**. Product copy, service templates and
+Naajah supports **learning, guidance, review and student-owned work**. Product copy, service templates and
 provider terms frame services as tutoring, review, consultation, development assistance and documentation
 support, and do not frame them as ghost-writing work to be submitted as the student's own. Concretely:
 
@@ -42,7 +42,7 @@ support, and do not frame them as ghost-writing work to be submitted as the stud
   - indicators are probabilistic;
   - false positives and false negatives occur;
   - a result never proves authorship.
-- **Similarity reports state their coverage explicitly.** Example: "Compared against: your previous uploads and 128 UniHub library resources. External academic databases: not configured." No source is invented. Turnitin and iThenticate are never mentioned as integrated.
+- **Similarity reports state their coverage explicitly.** Example: "Compared against: your previous uploads and 128 Naajah library resources. External academic databases: not configured." No source is invented. Turnitin and iThenticate are never mentioned as integrated.
 
 ## 5. Success metrics
 

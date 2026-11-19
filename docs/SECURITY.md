@@ -1,4 +1,4 @@
-# UniHub — Security
+# Naajah — Security
 
 | Area | Control | Status |
 |---|---|---|
@@ -16,5 +16,5 @@
 | Files | Size limits, extension allow-list, magic-byte check, random storage keys, downloads only through an authorised API endpoint | ⏳ Phase 6 |
 | Audit | `AuditLog` covers auth events, every admin mutation, order transitions, verification and refunds | ✅ auth / ⏳ others with their modules |
 | Secrets | Env-only and validated at boot (`JWT_ACCESS_SECRET` must be ≥ 32 chars). `.env` is gitignored | ✅ |
-| Payments | No card data touches UniHub. Status changes to SUCCEEDED only through a signed gateway webhook | ⏳ Phase 9 |
+| Payments | No card data touches Naajah. Status changes to SUCCEEDED only through a signed gateway webhook | ⏳ Phase 9 |
 | Login redirects | `next` parameter restricted to relative paths (no open redirect) | ✅ |
