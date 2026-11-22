@@ -51,7 +51,7 @@ function ContactForm() {
     e.preventDefault();
     setState('saving');
     try {
-      await api('/admin/settings/contact', { method: 'PATCH', json: { whatsapp: value.split(/[,\n;]+/).map((n) => n.replace(/\D/g, '')).filter(Boolean).join(',') } });
+      await api('/admin/settings/contact', { method: 'PATCH', json: { whatsapp: value.replace(/\D/g, '') } });
       setState('saved');
     } catch {
       setState('error');
@@ -69,10 +69,11 @@ function ContactForm() {
             setValue(e.target.value);
             setState('idle');
           }}
+          inputMode="numeric"
           dir="ltr"
-          placeholder="962791234567,962771234567"
+          placeholder="962791234567"
           aria-label={t('contactTitle')}
-          className={cn(input, 'w-full max-w-md font-mono')}
+          className={cn(input, 'w-64 font-mono')}
         />
         <button type="submit" disabled={state === 'saving'} className="inline-flex h-10 items-center gap-2 rounded-lg bg-brand px-4 text-sm font-bold text-brand-on hover:bg-brand-deep disabled:opacity-50">
           {state === 'saving' ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : <Save className="h-4 w-4" aria-hidden />} {t('save')}

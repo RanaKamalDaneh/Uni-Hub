@@ -3,10 +3,8 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { WhatsAppFloat } from '@/components/layout/whatsapp-float';
 import { WhatsAppOpener } from '@/components/layout/whatsapp-opener';
 import { ScrollReveal } from '@/components/scroll-reveal';
-import { getWhatsAppNumbers } from '@/lib/contact';
 
-export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const whatsappNumbers = await getWhatsAppNumbers();
+export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -15,7 +13,7 @@ export default async function PublicLayout({ children }: { children: React.React
       </main>
       <SiteFooter />
       <WhatsAppFloat />
-      <WhatsAppOpener numbers={whatsappNumbers} />
+      <WhatsAppOpener />
       <ScrollReveal />
     </div>
   );

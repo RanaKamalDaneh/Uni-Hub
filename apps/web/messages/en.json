@@ -241,10 +241,7 @@
     "appNotOpened": "WhatsApp didn't open?",
     "appNotOpenedHint": "If the app isn't installed on this device, open the chat in WhatsApp Web instead.",
     "openWeb": "Open WhatsApp Web",
-    "dismiss": "Close",
-    "chooseNumber": "Choose a WhatsApp number",
-    "chooseNumberHint": "Message either number and our team will reply.",
-    "numberLabel": "Number {n}"
+    "dismiss": "Close"
   },
   "season": {
     "start": "New semester: plan your courses and projects now and start on the right foot.",
@@ -313,8 +310,8 @@
     "forbidden": "This account does not have admin access.",
     "logout": "Log out",
     "viewSite": "View site",
-    "contactTitle": "WhatsApp numbers",
-    "contactHint": "International format without + or leading zeros, separated by commas, e.g. 962791234567,962771234567. With more than one number, visitors choose which one to message. Leave empty to hide WhatsApp buttons.",
+    "contactTitle": "WhatsApp number",
+    "contactHint": "International format without + or leading zeros, e.g. 962791234567. Leave empty to hide WhatsApp buttons.",
     "save": "Save",
     "saved": "Saved ✓",
     "saveFailed": "Could not save. Check the value.",

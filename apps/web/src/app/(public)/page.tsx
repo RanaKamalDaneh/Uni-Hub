@@ -10,8 +10,7 @@ import { TestimonialsSection } from '@/components/home/testimonials-section';
 import { EmptyState } from '@/components/ui/card';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 import { serverApiSafe } from '@/lib/api';
-import { getWhatsAppNumber, getWhatsAppNumbers, whatsappLink } from '@/lib/contact';
-import { formatWhatsAppNumber } from '@/lib/contact-format';
+import { getWhatsAppNumber, whatsappLink } from '@/lib/contact';
 import type { CategoryDto } from '@/lib/types';
 import { loc } from '@/lib/utils';
 
@@ -62,7 +61,7 @@ function SectionTitle({ eyebrow, title, subtitle, action }: { eyebrow?: string; 
 }
 
 export default async function HomePage() {
-  const [locale, t, tf, tc, ts, categories, whatsapp, whatsappNumbers] = await Promise.all([
+  const [locale, t, tf, tc, ts, categories, whatsapp] = await Promise.all([
     getLocale(),
     getTranslations('home'),
     getTranslations('faq'),
@@ -70,7 +69,6 @@ export default async function HomePage() {
     getTranslations('stats'),
     serverApiSafe<CategoryDto[]>('/categories'),
     getWhatsAppNumber(),
-    getWhatsAppNumbers(),
   ]);
   const Arrow = locale === 'ar' ? ArrowLeft : ArrowRight;
   const cats = categories ?? [];
@@ -238,22 +236,15 @@ export default async function HomePage() {
           <h2 className="relative mt-4 text-3xl font-extrabold sm:text-4xl">{t('ctaTitle')}</h2>
           <p className="relative mx-auto mt-3 max-w-xl text-white/85">{t('ctaText')}</p>
           <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-            {whatsappNumbers.length > 0 ? (
-              // One button per number, each opening that number directly (no picker).
-              whatsappNumbers.map((n) => (
-                <a
-                  key={n}
-                  href={whatsappLink(n, tc('general'))}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-wa-direct
-                  aria-label={`${tc('floating')} ${formatWhatsAppNumber(n)}`}
-                  className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#25D366] px-7 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-[#1EBE5A]"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span dir="ltr" className="font-mono">{formatWhatsAppNumber(n)}</span>
-                </a>
-              ))
+            {whatsapp ? (
+              <a
+                href={whatsappLink(whatsapp, tc('general'))}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#25D366] px-7 text-sm font-bold text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-[#1EBE5A]"
+              >
+                <WhatsAppIcon className="h-5 w-5" /> {tc('floating')}
+              </a>
             ) : (
               <Link href="/services" className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-7 text-sm font-bold text-blue-700 shadow-lift transition hover:-translate-y-0.5">
                 {t('exploreServices')} <Arrow className="h-4 w-4" aria-hidden />

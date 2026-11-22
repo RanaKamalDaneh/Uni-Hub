@@ -94,7 +94,7 @@ async function seedSettings() {
     'requests.requireModeration': false,
     'platform.currency': 'JOD',
     'platform.supportEmail': 'support@unihub.local',
-    // WhatsApp numbers (international format, digits only, comma-separated, e.g. 9627XXXXXXXX,9627YYYYYYYY). Empty = not configured yet.
+    // WhatsApp number (international format, digits only, e.g. 9627XXXXXXXX). Empty = not configured yet.
     'contact.whatsapp': process.env.SEED_WHATSAPP_NUMBER ?? '',
   };
   for (const [key, value] of Object.entries(defaults)) {
