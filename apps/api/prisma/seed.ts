@@ -312,6 +312,37 @@ async function retireRemovedCategories() {
   if (stale.length) console.log(`✔ Retired categories: ${stale.map((c) => c.slug).join(', ')}`);
 }
 
+/**
+ * Real owner admin account (works in production too), from SEED_ADMIN_EMAIL + SEED_ADMIN_PASSWORD.
+ * Created once; on later runs the password is left alone (so it can be changed later) and the
+ * account just keeps its Super Admin role. Set SEED_ADMIN_RESET_PASSWORD=true to force the env password.
+ */
+async function seedOwnerAdmin() {
+  const email = process.env.SEED_ADMIN_EMAIL?.trim().toLowerCase();
+  const password = process.env.SEED_ADMIN_PASSWORD;
+  if (!email || !password) return;
+  if (password.length < 10) {
+    console.warn('⚠ SEED_ADMIN_PASSWORD must be at least 10 characters: owner admin not created.');
+    return;
+  }
+  const role = await prisma.role.findUniqueOrThrow({ where: { key: 'SUPER_ADMIN' } });
+  const passwordHash = await bcrypt.hash(password, 12);
+  const existing = await prisma.user.findUnique({ where: { email } });
+  const user = existing
+    ? process.env.SEED_ADMIN_RESET_PASSWORD === 'true'
+      ? await prisma.user.update({ where: { id: existing.id }, data: { passwordHash, status: 'ACTIVE' } })
+      : existing
+    : await prisma.user.create({
+        data: { email, fullName: 'Naajah Admin', passwordHash, emailVerified: true, profile: { create: { preferredLocale: 'ar' } } },
+      });
+  await prisma.userRole.upsert({
+    where: { userId_roleId: { userId: user.id, roleId: role.id } },
+    update: {},
+    create: { userId: user.id, roleId: role.id },
+  });
+  console.log(`✔ Owner admin account ready (${existing ? 'existing' : 'created'})`);
+}
+
 async function main() {
   // Core platform content — safe to run in every environment.
   await seedRbac();
@@ -320,6 +351,7 @@ async function main() {
   await seedSettings();
   await seedPlatformCatalog();
   await retireRemovedCategories();
+  await seedOwnerAdmin();
 
   // Demo accounts — development only.
   if (process.env.NODE_ENV === 'production') {
