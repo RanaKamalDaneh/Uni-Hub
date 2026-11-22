@@ -8,12 +8,12 @@ export const revalidate = 3600;
 /** Every public page: home, services index, each category and each service. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [categories, first] = await Promise.all([
-    serverApiSafe<CategoryDto[]>('/categories'),
-    serverApiSafe<Paged<ServiceCardDto>>('/services?limit=48&page=1'),
+    serverApiSafe<CategoryDto[]>('/categories', { revalidate }),
+    serverApiSafe<Paged<ServiceCardDto>>('/services?limit=48&page=1', { revalidate }),
   ]);
   const services = [...(first?.items ?? [])];
   for (let page = 2; first && page <= first.pages; page++) {
-    const more = await serverApiSafe<Paged<ServiceCardDto>>(`/services?limit=48&page=${page}`);
+    const more = await serverApiSafe<Paged<ServiceCardDto>>(`/services?limit=48&page=${page}`, { revalidate });
     services.push(...(more?.items ?? []));
   }
   const now = new Date();
