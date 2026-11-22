@@ -9,8 +9,11 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { AuditService } from '../audit/audit.service';
 
 export class UpdateContactDto {
-  /** Digits only, international format without "+" or leading zeros (e.g. 962791234567). Empty clears it. */
-  @IsString() @Matches(/^(|[1-9]\d{7,14})$/, { message: 'whatsapp must be 8–15 digits in international format, e.g. 962791234567' })
+  /**
+   * One or more comma-separated numbers, digits only, international format without "+" or leading zeros
+   * (e.g. 962791234567,962771234567). Empty clears it.
+   */
+  @IsString() @Matches(/^(|[1-9]\d{7,14}(,[1-9]\d{7,14}){0,4})$/, { message: 'whatsapp must be up to 5 comma-separated numbers of 8–15 digits in international format, e.g. 962791234567,962771234567' })
   whatsapp!: string;
 }
 

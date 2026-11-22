@@ -48,8 +48,12 @@ export class CatalogService {
   async publicSettings() {
     const rows = await this.prisma.systemSetting.findMany({ where: { key: { in: ['contact.whatsapp'] } } });
     const get = (k: string) => rows.find((r) => r.key === k)?.value;
-    const whatsapp = String(get('contact.whatsapp') ?? '').replace(/\D/g, '');
-    return { whatsapp: whatsapp || null };
+    // Stored as comma-separated numbers; `whatsapp` stays the first one for older clients.
+    const whatsappNumbers = String(get('contact.whatsapp') ?? '')
+      .split(',')
+      .map((n) => n.replace(/\D/g, ''))
+      .filter(Boolean);
+    return { whatsapp: whatsappNumbers[0] ?? null, whatsappNumbers };
   }
 
   async referenceData() {

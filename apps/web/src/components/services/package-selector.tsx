@@ -1,12 +1,12 @@
 'use client';
 
-import { Check, Clock, MessageCircleMore, RefreshCw } from 'lucide-react';
+import { Check, MessageCircleMore, RefreshCw } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 import { whatsappLink } from '@/lib/contact';
 import type { PackageDto } from '@/lib/types';
-import { cn, formatMoney, loc } from '@/lib/utils';
+import { cn, loc } from '@/lib/utils';
 
 /**
  * Package comparison + WhatsApp contact. The site is a showcase: no orders or payments are
@@ -26,19 +26,16 @@ export function PackageSelector({
   whatsapp: string | null;
 }) {
   const t = useTranslations('services');
-  const tc = useTranslations('common');
   const locale = useLocale();
   const [active, setActive] = useState(Math.min(1, packages.length - 1)); // Standard by default
   const p = packages[active];
   if (!p) return null;
   const features = locale === 'ar' ? p.featuresAr : p.featuresEn;
-  const price = formatMoney(p.price, locale, currency);
 
   const message = () =>
     t('whatsappMessage', {
       service: serviceTitle,
       package: loc(p, 'name', locale),
-      price,
       url: `${window.location.origin}/service/${serviceSlug}`,
     });
 
@@ -65,13 +62,9 @@ export function PackageSelector({
       </div>
 
       <div id="pkg-panel" role="tabpanel" className="p-6">
-        <p className="text-3xl font-extrabold text-ink">{price}</p>
-        <p className="mt-2 text-sm text-ink-muted">{loc(p, 'description', locale)}</p>
+        <p className="text-sm text-ink-muted">{loc(p, 'description', locale)}</p>
 
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-ink">
-          <span className="inline-flex items-center gap-1.5">
-            <Clock className="h-4 w-4 text-brand-fg" aria-hidden /> {tc('days', { count: p.deliveryDays })}
-          </span>
           <span className="inline-flex items-center gap-1.5">
             <RefreshCw className="h-4 w-4 text-brand-fg" aria-hidden /> {t('revisions', { count: p.revisions })}
           </span>

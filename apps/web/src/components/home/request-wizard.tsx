@@ -9,7 +9,7 @@ import { ServiceLogo } from '@/components/services/service-logo';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 import { whatsappLink } from '@/lib/contact';
 import type { Paged, ServiceCardDto } from '@/lib/types';
-import { cn, formatMoney, loc } from '@/lib/utils';
+import { cn, loc } from '@/lib/utils';
 
 export interface WizardCategory {
   slug: string;
@@ -179,11 +179,6 @@ export function RequestWizard({ categories, whatsapp }: { categories: WizardCate
                           <span className="block truncate text-sm font-bold text-ink group-hover:text-brand-fg">{loc(s, 'title', locale)}</span>
                           <span className="block truncate text-xs text-ink-muted">{loc(s, 'summary', locale)}</span>
                         </span>
-                        {s.startingPrice && (
-                          <span className="shrink-0 text-xs text-ink-muted">
-                            {t('from')} <b className="text-sm text-ink">{formatMoney(s.startingPrice, locale, s.currency)}</b>
-                          </span>
-                        )}
                       </Link>
                     </li>
                   ))}

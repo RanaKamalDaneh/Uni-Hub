@@ -4,7 +4,6 @@ import {
   CheckCircle2,
   ChevronRight,
   ClipboardList,
-  Clock,
   Cpu,
   Globe2,
   MessageSquareQuote,
@@ -24,7 +23,7 @@ import { Card, EmptyState } from '@/components/ui/card';
 import { ApiError, serverApi } from '@/lib/api';
 import { getWhatsAppNumber } from '@/lib/contact';
 import type { ServiceDetailDto } from '@/lib/types';
-import { cn, formatMoney, loc, providerText } from '@/lib/utils';
+import { cn, loc, providerText } from '@/lib/utils';
 
 const LANGUAGE_AR: Record<string, string> = { Arabic: 'العربية', English: 'الإنجليزية', French: 'الفرنسية', German: 'الألمانية', Turkish: 'التركية' };
 
@@ -72,11 +71,10 @@ function CheckList({ items, tone = 'teal' }: { items: string[]; tone?: 'teal' | 
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [s, locale, t, tc, whatsapp] = await Promise.all([
+  const [s, locale, t, whatsapp] = await Promise.all([
     getService(slug),
     getLocale(),
     getTranslations('services'),
-    getTranslations('common'),
     getWhatsAppNumber(),
   ]);
   const ar = locale === 'ar';
@@ -128,14 +126,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </>
                   )}
                 </span>
-                <span className="inline-flex items-center gap-1.5 text-ink-muted">
-                  <Clock className="h-4 w-4" aria-hidden /> {t('deliveryTime', { days: tc('days', { count: s.deliveryDays }) })}
-                </span>
-                {s.startingPrice && (
-                  <span className="inline-flex items-center gap-1.5 text-ink-muted">
-                    {t('startingAt')} <strong className="text-ink">{formatMoney(s.startingPrice, locale, s.currency)}</strong>
-                  </span>
-                )}
               </div>
             </div>
           </div>
