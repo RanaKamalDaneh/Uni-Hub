@@ -33,13 +33,20 @@ export async function serverApi<T>(path: string, opts: { revalidate?: number } =
     : { headers, cache: 'no-store' };
   // Read-only GETs are safe to retry: one retry absorbs transient socket errors (e.g. a reused
   // keep-alive connection closed by the API, or the API restarting during development).
+  // Never hang the page: hosts such as Netlify kill a function that sends nothing for ~10s
+  // ("Inactivity Timeout"), so give up early and let the page show its friendly error instead.
+  const timeoutMs = Number(process.env.API_TIMEOUT_MS ?? 7000);
   let res: Response;
   try {
-    res = await fetch(`${base}/api/v1${path}`, init);
+    res = await fetch(`${base}/api/v1${path}`, { ...init, signal: AbortSignal.timeout(timeoutMs) });
   } catch (first) {
+    if ((first as Error).name === 'TimeoutError') {
+      console.error(`[serverApi] GET ${path} timed out after ${timeoutMs}ms`);
+      throw new ApiError(0, 'NETWORK', 'API timed out');
+    }
     await new Promise((r) => setTimeout(r, 150));
     try {
-      res = await fetch(`${base}/api/v1${path}`, init);
+      res = await fetch(`${base}/api/v1${path}`, { ...init, signal: AbortSignal.timeout(timeoutMs) });
     } catch (second) {
       const cause = (second as { cause?: { code?: string; message?: string } }).cause;
       console.error(`[serverApi] GET ${path} failed:`, cause?.code ?? cause?.message ?? second, '(first attempt:', (first as { cause?: { code?: string } }).cause?.code, ')');
