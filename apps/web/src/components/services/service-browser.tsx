@@ -9,9 +9,7 @@ import { ServiceCard } from './service-card';
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
-const SORTS = ['popular', 'newest', 'price_asc', 'price_desc', 'rating', 'fastest'] as const;
-const PRICE_OPTIONS = [20, 30, 50, 100];
-const DAY_OPTIONS = [2, 3, 5, 7];
+const SORTS = ['popular', 'newest', 'rating'] as const;
 
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? '';
 
@@ -33,16 +31,12 @@ export async function ServiceBrowser({
   const t = await getTranslations('services');
   const q = one(searchParams.q);
   const sort = (SORTS as readonly string[]).includes(one(searchParams.sort)) ? one(searchParams.sort) : 'popular';
-  const maxPrice = one(searchParams.maxPrice);
-  const maxDays = one(searchParams.maxDays);
   const page = Math.max(1, Number(one(searchParams.page)) || 1);
 
   const params = new URLSearchParams({ sort, page: String(page), limit: '12' });
   if (q) params.set('q', q);
   if (category) params.set('category', category);
   if (subcategory) params.set('subcategory', subcategory);
-  if (maxPrice) params.set('maxPrice', maxPrice);
-  if (maxDays) params.set('maxDays', maxDays);
 
   const data = await serverApi<Paged<ServiceCardDto>>(`/services?${params}`);
 
@@ -51,13 +45,11 @@ export async function ServiceBrowser({
     if (q) next.set('q', q);
     if (subcategory) next.set('sub', subcategory);
     if (sort !== 'popular') next.set('sort', sort);
-    if (maxPrice) next.set('maxPrice', maxPrice);
-    if (maxDays) next.set('maxDays', maxDays);
     if (p > 1) next.set('page', String(p));
     const qs = next.toString();
     return qs ? `${basePath}?${qs}` : basePath;
   };
-  const hasFilters = !!(q || maxPrice || maxDays || sort !== 'popular');
+  const hasFilters = !!(q || sort !== 'popular');
   const selectCls =
     'h-10 rounded-xl border border-line bg-surface px-3 text-sm text-ink focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/10';
 
@@ -85,32 +77,6 @@ export async function ServiceBrowser({
               {SORTS.map((s) => (
                 <option key={s} value={s}>
                   {t(`sort_${s}`)}
-                </option>
-              ))}
-            </select>
-            <label className="sr-only" htmlFor="svc-price">
-              {t('maxPrice')}
-            </label>
-            <select id="svc-price" name="maxPrice" defaultValue={maxPrice} className={selectCls}>
-              <option value="">
-                {t('maxPrice')}: {t('any')}
-              </option>
-              {PRICE_OPTIONS.map((p) => (
-                <option key={p} value={p}>
-                  ≤ {p} JOD
-                </option>
-              ))}
-            </select>
-            <label className="sr-only" htmlFor="svc-days">
-              {t('maxDays')}
-            </label>
-            <select id="svc-days" name="maxDays" defaultValue={maxDays} className={selectCls}>
-              <option value="">
-                {t('maxDays')}: {t('any')}
-              </option>
-              {DAY_OPTIONS.map((d) => (
-                <option key={d} value={d}>
-                  {t('daysOption', { count: d })}
                 </option>
               ))}
             </select>

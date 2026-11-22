@@ -1,9 +1,9 @@
-import { BadgeCheck, Clock, Star } from 'lucide-react';
+import { BadgeCheck, Star } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { CATEGORY_TONES } from '@/components/category-icon';
 import type { ServiceCardDto } from '@/lib/types';
-import { cn, formatMoney, loc, providerText } from '@/lib/utils';
+import { cn, loc, providerText } from '@/lib/utils';
 import { ServiceLogo } from './service-logo';
 
 /**
@@ -12,7 +12,6 @@ import { ServiceLogo } from './service-logo';
  */
 export async function ServiceCard({ service: s, index = 0 }: { service: ServiceCardDto; index?: number }) {
   const locale = await getLocale();
-  const tc = await getTranslations('common');
   const ts = await getTranslations('services');
   const tone = CATEGORY_TONES[s.category.color] ?? CATEGORY_TONES.blue;
 
@@ -68,16 +67,7 @@ export async function ServiceCard({ service: s, index = 0 }: { service: ServiceC
             <BadgeCheck className="h-3.5 w-3.5 shrink-0 text-teal" aria-hidden />
             <span className="truncate">{providerText(s.provider, locale).name}</span>
           </p>
-          <p className="mt-1 flex items-center gap-1 text-xs text-ink-muted">
-            <Clock className="h-3.5 w-3.5" aria-hidden /> {tc('days', { count: s.deliveryDays })}
-          </p>
         </div>
-        {s.startingPrice && (
-          <div className="text-end">
-            <p className="text-[11px] text-ink-muted">{tc('from')}</p>
-            <p className="text-lg font-bold leading-tight text-ink">{formatMoney(s.startingPrice, locale, s.currency)}</p>
-          </div>
-        )}
       </div>
     </Link>
   );
